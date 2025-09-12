@@ -1,0 +1,948 @@
+:root {
+  --primary: #1f1c2c;
+  --secondary: #928dab;
+  --accent: #ff683c;
+  --glow: #21c8f6;
+  --dark: #121214;
+  --white: #ddd;
+  --text-light: #bbb;
+}
+
+
+/* General setup */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--white);
+  background: var(--primary);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  padding-top: 70px;
+  max-width: 100vw;
+}
+
+
+/* Main content margins */
+main {
+  margin-left: 96px;
+  margin-right: 96px;
+}
+
+@media (max-width: 900px) {
+  main {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Target the first education h3 strongly */
+  .education-node[data-index="0"] .edu-box h3 {
+    text-align: center !important;
+  }
+
+  /* Optional: center the rest of the box content */
+  .education-node[data-index="0"] .edu-box {
+    text-align: center !important;
+  }
+}
+
+/* Navbar styles */
+.desktop-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(25, 25, 35, 0.96);
+  z-index: 10000;
+  padding: 1em 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  box-shadow: 0 4px 20px 0 #000b;
+  transition: background-color 0.3s ease;
+}
+
+.desktop-nav.scrolled {
+  background: rgba(25, 25, 35, 1);
+}
+
+.desktop-nav ul {
+  display: flex;
+  gap: 2.2em;
+  margin: 0;
+  padding: 0;
+}
+
+.desktop-nav .nav-link {
+  color: var(--white);
+  font-size: 1.1em;
+  text-decoration: none;
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.desktop-nav .nav-link:hover,
+.desktop-nav .nav-link.active {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .desktop-nav {
+    display: none;
+  }
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background-color: var(--primary);
+  box-shadow: 4px 0 20px 3px rgba(79, 77, 102, 0.8);
+  transform: translateX(-280px);
+  transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+  padding-top: 60px;
+  overflow-y: auto;
+  z-index: 10000;
+  display: none;
+}
+
+.sidebar.active {
+  display: block;
+  transform: translateX(0);
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    display: block;
+  }
+}
+
+.sidebar ul {
+  padding-left: 25px;
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin-bottom: 22px;
+}
+
+.sidebar ul li a {
+  color: var(--white);
+  font-size: 1.15em;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.25s;
+}
+
+.sidebar ul li a.active,
+.sidebar ul li a:hover {
+  color: var(--accent);
+}
+
+/* Hamburger */
+.hamburger {
+  position: fixed;
+  top: 18px;
+  left: 20px;
+  width: 28px;
+  height: 22px;
+  cursor: pointer;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 10001;
+}
+
+.hamburger div {
+  height: 4px;
+  background-color: var(--accent);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.hamburger div:nth-child(1) {
+  width: 100%;
+}
+
+.hamburger div:nth-child(2) {
+  width: 70%;
+}
+
+.hamburger div:nth-child(3) {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* Profile picture wrapper */
+.profile-wrapper {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 0 15px var(--accent);
+  animation: pulseGlow 3s infinite;
+  transition: transform 0.3s ease;
+}
+
+.profile-wrapper:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 32px var(--glow);
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 15px var(--accent);
+  }
+
+  50% {
+    box-shadow: 0 0 32px var(--glow);
+  }
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  pointer-events: auto;
+}
+
+/* Hero section */
+.hero {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2em;
+  padding-bottom: 3em;
+  text-align: center;
+}
+
+.hero > div.profile-wrapper {
+  flex-shrink: 0;
+  width: 220px;
+  height: 220px;
+}
+
+.hero h1,
+.hero h2,
+.hero p {
+  margin: 0.3rem 0;
+  text-align: left;
+}
+
+.hero > div.content-wrapper {
+  max-width: 600px;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    text-align: left;
+    padding-top: 1.5em;
+  }
+
+  .hero > div.profile-wrapper {
+    width: 170px;
+    height: 170px;
+    margin-bottom: 1.5em;
+  }
+
+  /* Center MBA title on mobile and tablet */
+  .mba-title {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 100%;
+  }
+}
+
+/* About paragraph */
+#about p {
+  line-height: 2;
+  max-width: 1500px;
+  margin: 0 auto;
+  text-align: justify;
+  color: var(--text-light);
+}
+
+@media (max-width: 900px) {
+  #about p {
+    text-align: left;
+  }
+}
+
+/* Education & Work Cards */
+.project-card,
+.work-card,
+.edu-entry {
+  background: var(--primary);
+  border-radius: 12px;
+  padding: 2em;
+  box-shadow: 0 0 38px var(--accent);
+  color: var(--accent);
+  user-select: none;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+  position: relative;
+  opacity: 0.85;
+  margin-bottom: 2rem;
+  text-decoration: none;
+}
+
+.project-card:hover,
+.work-card:hover,
+.edu-entry:hover {
+  box-shadow: 0 0 55px 5px var(--accent);
+  opacity: 1;
+  transform: translateY(-4px) scale(1.03);
+}
+
+.work-card a,
+.work-card a:link,
+.work-card a:visited,
+.work-card a:hover,
+.work-card a:active,
+.work-card a:focus {
+  text-decoration: none !important;
+  color: var(--accent);
+  outline: none;
+  transition: color 0.3s ease;
+}
+
+.work-card a:hover {
+  color: var(--white);
+  text-decoration: none !important;
+}
+
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+@media (max-width: 900px) {
+  #work p {
+    text-align: left;
+  }
+}
+
+@media (max-width: 900px) {
+  #home h2 {
+    text-align: center;
+  }
+}
+
+/* Icons in cards */
+.edu-icon {
+  font-size: 2.5em;
+  display: block;
+  margin-bottom: 0.7em;
+}
+
+/* Headings */
+.edu-entry h3 {
+  margin: 0 0 0.5em 0;
+  font-size: 1.4em;
+  color: var(--accent);
+}
+
+/* Card spans */
+.edu-entry span,
+.work-card span {
+  color: var(--white) !important;
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.6em;
+  color: var(--accent);
+}
+
+/* College names in white */
+.college-name {
+  color: var(--white);
+}
+
+/* Company names accent */
+.company-name {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Description paragraphs */
+.edu-entry p,
+.work-card p,
+.project-card p {
+  color: var(--text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  #project-card p {
+    text-align: left;
+  }
+}
+
+/* Links inside work cards */
+.work-card a,
+.work-card a:visited,
+.work-card h3 a,
+.work-card h3 a:visited {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.work-card a:hover,
+.work-card h3 a:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+/* Fully clickable card */
+.work-card.card-link {
+  cursor: pointer;
+  display: block;
+  color: var(--white);
+  width: 100%;
+  height: 100%;
+}
+
+/* Hover effect on clickable */
+.work-card.card-link:hover {
+  box-shadow: 0 0 55px 5px var(--accent);
+  border-color: var(--accent);
+}
+
+/* Responsive card styles */
+@media (max-width: 600px) {
+  .project-card,
+  .work-card,
+  .edu-entry {
+    padding: 1em;
+    font-size: 1em;
+  }
+
+  .edu-icon {
+    font-size: 1.3em;
+  }
+}
+
+/* Education pathway section */
+.education-pathway {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding-left: 50px;
+  user-select: none;
+  height: 600px; /* Fixed height for animation track */
+}
+
+.path-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 32px;
+  width: 4px;
+  background: var(--accent);
+  border-radius: 2px;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.student-icon {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  font-size: 28px;
+  color: var(--accent);
+  will-change: transform;
+  transition: transform 1s ease-in-out;
+  z-index: 10;
+}
+
+.education-nodes {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  position: relative;
+  z-index: 5;
+}
+
+.education-node {
+  cursor: pointer;
+}
+
+.edu-box {
+  background: var(--primary);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 0 38px var(--accent);
+  color: var(--white);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+.edu-box:hover {
+  box-shadow: 0 0 55px 5px var(--accent);
+  transform: translateY(-5px);
+}
+
+.education-node.active .edu-box {
+  box-shadow: 0 0 55px 5px var(--accent);
+  font-weight: 700;
+}
+
+.edu-box h3 {
+  margin: 0 0 0.3em 0;
+  color: var(--accent);
+}
+
+.college-name,
+.edu-box p {
+  margin: 0;
+}
+
+#education-title {
+  margin: 3rem auto 1.5rem;
+  max-width: 1500px;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--white);
+  user-select: none;
+}
+
+/* Resume download button container */
+.resume-actions {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 1.7rem 0;
+}
+
+/* Resume download button */
+.btn-resume {
+  display: inline-block;
+  padding: 0.8em 2.5em;
+  font-weight: 700;
+  font-size: 1.05em;
+  border-radius: 8px;
+  color: var(--white);
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 20px var(--accent);
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.btn-resume:hover,
+.btn-resume:focus {
+  background-color: #ff7856;
+  outline: none;
+}
+
+/* PDF frame styling: show on desktop, hide on tablet/mobile */
+.pdf-frame {
+  display: block;
+  max-width: 760px;
+  width: 95vw;
+  margin: 0 auto 2rem auto;
+  background: linear-gradient(125deg, #19162b 70%, #2d2747 100%);
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 0 32px #928dab, 0 0 38px #ff683c12;
+}
+
+@media (max-width: 900px) {
+  .pdf-frame {
+    display: none;
+  }
+}
+
+/* Contact connect section */
+.contact-connect {
+  max-width: 400px;
+  margin: 1rem auto 2rem auto;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  text-align: center;
+  flex-direction: row;
+  user-select: none;
+}
+
+/* Contact links */
+.contact-email,
+.contact-phone {
+  background: var(--primary);
+  border-radius: 50px;
+  box-shadow: 0 0 18px var(--accent);
+  padding: 0.6em 1.2em;
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: 140px;
+  justify-content: center;
+  animation: smallFloat 3.5s ease-in-out infinite;
+}
+
+.contact-email:hover,
+.contact-phone:hover {
+  background: var(--accent);
+  box-shadow: 0 0 28px var(--accent);
+  color: var(--dark);
+  text-decoration: none;
+}
+
+/* Footer centering */
+.site-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em 1vw;
+  background-color: var(--primary);
+  color: var(--text-light);
+  border-top: 1px solid var(--accent);
+  font-size: 1em;
+  user-select: none;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 60px;
+}
+
+/* Connect with me section title */
+.section-title.center-text {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--white);
+  user-select: none;
+}
+
+/* Connect section container */
+.contact-connect {
+  max-width: 400px;
+  margin: 0 auto 2rem auto;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+/* Contact buttons (email, phone, whatsapp) */
+.contact-email,
+.contact-phone {
+  background: var(--primary);
+  border-radius: 50px;
+  padding: 0.6em 1.2em;
+  box-shadow: 0 0 18px var(--accent);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  text-decoration: none;
+  max-width: 140px;
+  justify-content: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-email:hover,
+.contact-phone:hover {
+  background: var(--accent);
+  box-shadow: 0 0 28px var(--accent);
+  color: var(--dark);
+  text-decoration: none;
+}
+
+/* Social box container */
+.social-box {
+  display: flex;
+  gap: 2rem;
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  max-width: 400px;
+  background: var(--primary);
+  margin: 0 auto 1.8rem auto; /* Margin bottom to separate footer */
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+/* Individual social item */
+.social-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--accent);
+  padding: 0.7rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.social-item:last-child {
+  border-right: none;
+}
+
+.social-item a {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.2em;
+}
+
+.social-item a:hover {
+  color: var(--accent);
+}
+
+/* FontAwesome icon colors */
+.fab.fa-linkedin,
+.fab.fa-instagram {
+  color: var(--white);
+  transition: color 0.3s ease;
+}
+
+.fab.fa-linkedin:hover {
+  color: #0a66c2;
+}
+
+.fab.fa-instagram:hover {
+  color: #e4405f;
+}
+
+@media (max-width: 600px) {
+  /* Make education pathway container width smaller and scrollable horizontally */
+  .education-pathway {
+    width: 100%;
+    padding-left: 30px;
+    overflow-x: auto;
+  }
+
+  /* Ensure education boxes within are narrower */
+  .edu-box {
+    min-width: 280px;
+  }
+
+  /* Responsive resume section */
+  #resume {
+    padding: 0 1em;
+  }
+
+  /* Resize the iframe for smaller devices */
+  .pdf-frame {
+    width: 100%;
+    height: 400px;
+  }
+
+  /* Center download button and make full width */
+  .resume .resume-actions {
+    justify-content: center;
+    padding: 1em 0;
+  }
+
+  .resume .btn-resume {
+    width: 80%;
+    max-width: 300px;
+    padding: 0.8em 0;
+    font-size: 1.1em;
+  }
+
+  /* Connect section buttons stacking */
+  .contact-connect {
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  /* Full width buttons on mobile */
+  .contact-connect .contact-email,
+  .contact-connect .contact-phone {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* Default layout: buttons side by side */
+.contact-connect {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
+  margin: 1rem auto 2rem;
+}
+
+/* Buttons default styling */
+.contact-connect a.contact-email,
+.contact-connect a.contact-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6em 1.2em;
+  border-radius: 50px;
+  background: var(--primary);
+  box-shadow: 0 0 18px var(--accent);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1em;
+  cursor: pointer;
+  text-decoration: none;
+  max-width: 140px;
+  justify-content: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Mobile and Tablet layout: stack buttons vertically and smaller */
+@media (max-width: 900px) {
+  .contact-connect {
+    flex-direction: column;
+  }
+
+  .contact-connect a.contact-email,
+  .contact-connect a.contact-phone {
+    max-width: 160px;
+    width: 80%;
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 900px) {
+  .education-pathway {
+    height: 500px; /* fixed height to allow scrolling */
+    overflow-y: auto; /* vertical scroll */
+    padding-right: 10px; /* for scrollbar space */
+  }
+  
+  .education-pathway::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .education-pathway::-webkit-scrollbar-thumb {
+    background-color: var(--accent);
+    border-radius: 3px;
+  }
+  
+  .education-pathway::-webkit-scrollbar-track {
+    background-color: var(--primary);
+  }
+  
+  .education-pathway {
+    width: 100%;
+    max-width: none; /* allow full width on small screens */
+  }
+  
+  .education-pathway .edu-box {
+    min-width: auto;
+  }
+  
+  /* Stack the boxes naturally */
+  .education-nodes {
+    flex-direction: column;
+    gap: 40px;
+    height: auto;
+  }
+  
+  /* Adjust path line height to container scrollable height */
+  .path-line {
+    height: calc(100% + 40px);
+  }
+}
+
+/* Default container packs boxes closer */
+.education-nodes {
+  gap: 1.5rem !important; /* reduce gap between boxes */
+}
+
+/* Mobile adjustments */
+@media (max-width: 900px) {
+  .education-pathway {
+    height: auto; /* auto height to fit content */
+    max-height: none; /* no max height limit */
+    overflow: visible; /* turn off scroll */
+    padding-right: 0;
+  }
+  .education-nodes {
+    gap: 1rem !important; /* even tighter spacing */
+  }
+  .edu-box {
+    padding: 1rem 1.5rem; /* smaller padding for compact boxes */
+  }
+}
+
+@media (max-width: 900px) {
+  .path-line {
+    height: calc(100% - 4rem); /* reduce height to prevent line going past last box */
+  }
+}
+
+@media (max-width: 900px) {
+  /* Center pathway container in mobile */
+  .education-pathway {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    width: 100% !important;
+    max-width: 335px; /* adjust as needed */
+  }
+  
+  /* Remove bottom margin/line below last box */
+  .education-node:last-child .edu-box {
+    margin-bottom: 0 !important;
+    box-shadow: 0 0 30px var(--accent);
+  }
+}
