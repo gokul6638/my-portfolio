@@ -49,12 +49,12 @@ main {
 @media (max-width: 900px) {
   /* Target the first education h3 strongly */
   .education-node[data-index="0"] .edu-box h3 {
-    text-align: center !important;
+    text-align: left !important;
   }
 
   /* Optional: center the rest of the box content */
   .education-node[data-index="0"] .edu-box {
-    text-align: center !important;
+    text-align: left !important;
   }
 }
 
@@ -101,7 +101,7 @@ main {
   border-color: var(--accent);
 }
 
- (max-width: 900px) {
+@media (max-width: 900px) {
   .desktop-nav {
     display: none;
   }
@@ -260,7 +260,7 @@ main {
 .hero h2,
 .hero p {
   margin: 0.3rem 0;
-  text-align: left;
+  text-align: center;
 }
 
 .hero > div.content-wrapper {
@@ -321,6 +321,7 @@ main {
   margin-bottom: 2rem;
   text-decoration: none;
 }
+
 .project-card:hover,
 .work-card:hover,
 .edu-entry:hover {
@@ -767,7 +768,7 @@ p {
   /* Make education pathway container width smaller and scrollable horizontally */
   .education-pathway {
     width: 100%;
-    padding-left: 30px;
+    padding-left: 20px;
     overflow-x: auto;
   }
 
@@ -945,5 +946,3 @@ p {
     box-shadow: 0 0 30px var(--accent);
   }
 }
-
-
