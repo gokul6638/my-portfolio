@@ -101,7 +101,7 @@ main {
   border-color: var(--accent);
 }
 
-@media (max-width: 900px) {
+ (max-width: 900px) {
   .desktop-nav {
     display: none;
   }
@@ -320,6 +320,12 @@ main {
   opacity: 0.85;
   margin-bottom: 2rem;
   text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  project-card {
+    text-align: left;
+  }
 }
 
 .project-card:hover,
@@ -946,3 +952,4 @@ p {
     box-shadow: 0 0 30px var(--accent);
   }
 }
+
