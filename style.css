@@ -321,13 +321,6 @@ main {
   margin-bottom: 2rem;
   text-decoration: none;
 }
-
-@media (max-width: 900px) {
-  project-card {
-    text-align: left;
-  }
-}
-
 .project-card:hover,
 .work-card:hover,
 .edu-entry:hover {
@@ -952,4 +945,5 @@ p {
     box-shadow: 0 0 30px var(--accent);
   }
 }
+
 
