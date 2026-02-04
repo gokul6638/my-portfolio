@@ -305,6 +305,48 @@ main {
   }
 }
 
+/* Projects section header with "View All Projects" button */
+/* Wrapper for the View All Projects button under the last card */
+.projects-view-all-wrapper {
+  display: flex;
+  justify-content: flex-end;   /* right side on desktop & tablet */
+  margin-top: 1.5rem;
+}
+
+/* Mobile: center the button */
+@media (max-width: 600px) {
+  .projects-view-all-wrapper {
+    justify-content: center;
+  }
+}
+
+/* Button style (shared) */
+.btn-view-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45em 1.4em;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--dark);
+  font-weight: 700;
+  font-size: 0.98rem;
+  text-decoration: none;
+  box-shadow: 0 0 18px var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.btn-view-all:hover,
+.btn-view-all:focus {
+  background-color: #ff7856;
+  box-shadow: 0 0 22px var(--accent);
+  transform: translateY(-1px);
+  outline: none;
+}
+
 /* Education & Work Cards */
 .project-card,
 .work-card,
