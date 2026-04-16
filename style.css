@@ -25,6 +25,41 @@ body {
   max-width: 100vw;
 }
 
+/* Custom Cursor */
+* { cursor: none !important; }
+
+#cursor-dot {
+  width: 8px; height: 8px;
+  background: #e8581a;
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s, background 0.2s;
+  z-index: 99999;
+}
+
+#cursor-ring {
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(232,88,26,0.6);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, border-color 0.2s;
+  z-index: 99998;
+}
+
+.cursor-trail {
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 99997;
+}
 
 /* Main content margins */
 main {
@@ -303,6 +338,48 @@ main {
   #about p {
     text-align: left;
   }
+}
+
+/* Projects section header with "View All Projects" button */
+/* Wrapper for the View All Projects button under the last card */
+.projects-view-all-wrapper {
+  display: flex;
+  justify-content: flex-end;   /* right side on desktop & tablet */
+  margin-top: 1.5rem;
+}
+
+/* Mobile: center the button */
+@media (max-width: 600px) {
+  .projects-view-all-wrapper {
+    justify-content: center;
+  }
+}
+
+/* Button style (shared) */
+.btn-view-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45em 1.4em;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--dark);
+  font-weight: 700;
+  font-size: 0.98rem;
+  text-decoration: none;
+  box-shadow: 0 0 18px var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.btn-view-all:hover,
+.btn-view-all:focus {
+  background-color: #ff7856;
+  box-shadow: 0 0 22px var(--accent);
+  transform: translateY(-1px);
+  outline: none;
 }
 
 /* Education & Work Cards */
