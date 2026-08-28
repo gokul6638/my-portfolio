@@ -22,7 +22,10 @@
 
   document.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
-    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    if (dot) {
+      dot.style.left = mx + 'px'; 
+      dot.style.top = my + 'px';
+    }
     hist = [{ x: mx, y: my }, ...hist.slice(0, TRAIL - 1)];
     trails.forEach((t, i) => {
       t.el.style.left = hist[i].x + 'px';
@@ -32,31 +35,39 @@
 
   document.querySelectorAll('a, button, [data-hover]').forEach(el => {
     el.addEventListener('mouseenter', () => {
-      ring.style.width = '56px'; ring.style.height = '56px';
-      ring.style.borderColor = 'rgba(232,88,26,1)';
-      dot.style.transform = 'translate(-50%,-50%) scale(1.6)';
-      dot.style.background = '#ff6b2b';
+      if (ring && dot) {
+        ring.style.width = '56px'; ring.style.height = '56px';
+        ring.style.borderColor = 'rgba(232,88,26,1)';
+        dot.style.transform = 'translate(-50%,-50%) scale(1.6)';
+        dot.style.background = '#ff6b2b';
+      }
     });
     el.addEventListener('mouseleave', () => {
-      ring.style.width = '36px'; ring.style.height = '36px';
-      ring.style.borderColor = 'rgba(232,88,26,0.6)';
-      dot.style.transform = 'translate(-50%,-50%) scale(1)';
-      dot.style.background = '#e8581a';
+      if (ring && dot) {
+        ring.style.width = '36px'; ring.style.height = '36px';
+        ring.style.borderColor = 'rgba(232,88,26,0.6)';
+        dot.style.transform = 'translate(-50%,-50%) scale(1)';
+        dot.style.background = '#e8581a';
+      }
     });
   });
 
   (function animRing() {
     rx += (mx - rx) * 0.12;
     ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    if (ring) {
+      ring.style.left = rx + 'px'; 
+      ring.style.top = ry + 'px';
+    }
     requestAnimationFrame(animRing);
   })();
 })();
 
-// Section reveal animation
+// Section reveal on scroll
 const sections = document.querySelectorAll('.section');
 window.addEventListener('scroll', revealSections);
 window.addEventListener('DOMContentLoaded', revealSections);
+
 function revealSections() {
   const scrollY = window.pageYOffset + window.innerHeight;
   sections.forEach(sec => {
@@ -64,25 +75,30 @@ function revealSections() {
   });
 }
 
-// Navbar background on scroll
+// Navbar scroll styling
 const navbar = document.querySelector('.desktop-nav');
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) navbar.classList.add('scrolled');
-  else navbar.classList.remove('scrolled');
+  if (navbar) {
+    if (window.scrollY > 50) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  }
 });
 
-// Navbar link highlight on scroll
+// Active nav highlight
 const navLinks = document.querySelectorAll('.nav-link');
 window.addEventListener('scroll', () => {
   const scrollY = window.pageYOffset + 80;
   navLinks.forEach(link => {
     const sec = document.querySelector(link.getAttribute('href'));
-    if (sec && sec.offsetTop <= scrollY && (sec.offsetTop + sec.offsetHeight) > scrollY) link.classList.add('active');
-    else link.classList.remove('active');
+    if (sec && sec.offsetTop <= scrollY && (sec.offsetTop + sec.offsetHeight) > scrollY) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
   });
 });
 
-// Education nodes clickable/open official sites properly
+// Education click links
 document.querySelectorAll('.education-node').forEach(entry => {
   entry.addEventListener('click', () => {
     const url = entry.getAttribute('data-url');
@@ -92,29 +108,33 @@ document.querySelectorAll('.education-node').forEach(entry => {
   });
 });
 
-// Hamburger sidebar toggle
+// Mobile Sidebar
 const hamburger = document.getElementById('hamburger');
 const sidebar = document.getElementById('sidebar');
-hamburger.addEventListener('click', () => {
-  sidebar.classList.toggle('active');
-  hamburger.classList.toggle('active');
-});
-hamburger.addEventListener('keydown', e => {
-  if (e.key === 'Enter' || e.key === ' ') {
+
+if (hamburger && sidebar) {
+  hamburger.addEventListener('click', () => {
     sidebar.classList.toggle('active');
     hamburger.classList.toggle('active');
-  }
-});
+  });
+  hamburger.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      sidebar.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    }
+  });
+}
 
-// Close sidebar menu when clicking nav link on mobile/tablet
 document.querySelectorAll('.sidebar .nav-link').forEach(link => {
   link.addEventListener('click', () => {
-    sidebar.classList.remove('active');
-    hamburger.classList.remove('active');
+    if (sidebar && hamburger) {
+      sidebar.classList.remove('active');
+      hamburger.classList.remove('active');
+    }
   });
 });
 
-// Disable right click only on profile image
+// Block Context Menu on Profile Image
 const profileImg = document.getElementById('profileImage');
 if (profileImg) {
   profileImg.addEventListener('contextmenu', e => {
@@ -123,20 +143,43 @@ if (profileImg) {
   }, false);
 }
 
-// Dynamic copyright year
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("currentYear").textContent = new Date().getFullYear();
+// Autoplay and Protection for Non-Downloadable Video
+document.addEventListener('DOMContentLoaded', () => {
+  const avatarVideo = document.getElementById('portfolio-avatar-video');
+  
+  if (avatarVideo) {
+    avatarVideo.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      return false;
+    });
+    
+    const playPromise = avatarVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        document.body.addEventListener('click', () => {
+          avatarVideo.play();
+        }, { once: true });
+      });
+    }
+  }
+
+  const yearEl = document.getElementById("currentYear");
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
 });
 
-// Education student icon cycling animation
+// Education Timeline Dynamic Alignment
 document.addEventListener('DOMContentLoaded', () => {
   const student = document.querySelector('.student-icon');
   const nodes = Array.from(document.querySelectorAll('.education-node'));
   const container = document.querySelector('.education-nodes');
+  
+  if (!student || !container || nodes.length === 0) return;
+
   let current = 0;
   const total = nodes.length;
 
-  // Calculate position for student icon relative to container
   function updatePosition(index) {
     const target = nodes[index];
     const containerRect = container.getBoundingClientRect();
@@ -148,13 +191,11 @@ document.addEventListener('DOMContentLoaded', () => {
     nodes.forEach((node, i) => node.classList.toggle('active', i === index));
   }
 
-  // Cycle through nodes every 3s
   updatePosition(current);
   setInterval(() => {
     current = (current + 1) % total;
     updatePosition(current);
   }, 3000);
 
-  // Responsive update on resize
   window.addEventListener('resize', () => updatePosition(current));
 });

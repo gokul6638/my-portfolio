@@ -17,18 +17,15 @@
 
 <body>
 
-  <!-- Custom Cursor -->
-   <div id="cursor-dot"></div>
-   <div id="cursor-ring"></div>
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
 
-  <!-- Hamburger Menu -->
   <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
     <div></div>
     <div></div>
     <div></div>
   </div>
 
-  <!-- Sidebar Navigation -->
   <nav class="sidebar" id="sidebar" aria-label="Primary navigation">
     <ul>
       <li><a href="#home" class="nav-link">Home</a></li>
@@ -42,7 +39,6 @@
     </ul>
   </nav>
 
-  <!-- Desktop Navbar -->
   <nav class="desktop-nav" aria-label="Primary navigation">
     <span class="glow" tabindex="0">My Portfolio</span>
     <ul>
@@ -58,24 +54,40 @@
   </nav>
 
   <main>
-    <!-- Home -->
     <section id="home" class="section hero reveal">
-  <div class="profile-wrapper">
-    <img
-      src="https://drive.google.com/thumbnail?id=1gHYrOMz1f7agiemAlvvpTdWgWdBr-EUV&sz=w500"
-      class="profile-img"
-      alt="myimage"
-      id="profileImage"
-      draggable="false"
-      tabindex="0"
-    />
-    <div class="glow-border"></div>
-  </div>
-  <h1>Gokul Kanuvai Ravikumar</h1>
-  <h2 class="mba-title">MBA - International Business</h2>
-</section>
+      <div class="hero-left">
+        <div class="profile-wrapper">
+          <img
+            src="https://drive.google.com/thumbnail?id=1gHYrOMz1f7agiemAlvvpTdWgWdBr-EUV&sz=w500"
+            class="profile-img"
+            alt="Gokul K Ravikumar"
+            id="profileImage"
+            draggable="false"
+            tabindex="0"
+          />
+        </div>
+        <h1>Gokul Kanuvai Ravikumar</h1>
+        <h2 class="mba-title">MBA-International Business</h2>
+      </div>
 
-    <!-- About -->
+      <div class="hero-right">
+        <div class="hero-video-box">
+          <video 
+            id="portfolio-avatar-video" 
+            autoplay 
+            muted
+            loop
+            playsinline 
+            controlslist="nodownload nobuttons noremoteplayback" 
+            disablepictureinpicture 
+            oncontextmenu="return false;">
+            <source src="files/Animated Video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </section>
+
     <section id="about" class="section about reveal">
       <h2>About Me</h2>
       <p>
@@ -95,37 +107,28 @@
       </p>
     </section>
 
-    <!-- Projects -->
-<section id="projects" class="section projects reveal">
-
-    <h2>My Projects</h2>
+    <section id="projects" class="section projects reveal">
+      <h2>My Projects</h2>
       <div class="project-card">
-        <h3>Vendor Selection & Fabric Sourcing Analysis</h3>
-        <p>In this project, I evaluated multiple fabric suppliers for uniform manufacturing using a structured vendor selection
-          approach. Suppliers were compared based on price, quality, MOQ, lead time, and reliability, supported by a weighted scoring
-          model. I also analyzed the cost impact of each supplier choice. This project gave me hands-on exposure to procurement,
-          sourcing decisions, and supply chain planning.</p>
+        <h3>Market Research & Competitive Analysis: Uniform Manufacturing Industry</h3>
+        <p>In this project, I Conducted a comprehensive study of the uniform manufacturing industry across the US and India, utilizing
+          SWOT and competitive matrices to identify high-growth opportunities in sustainability and international export strategies.</p>
       </div>
       <div class="project-card">
-        <h3>Logistics Cost and Transport Mode Analysis</h3>
-        <p>This project involved comparing sea and air freight options for a garment export shipment. I calculated CBM, chargeable
-          weight, total freight cost, and cost per unit to understand the impact of each transport mode. Based on cost efficiency and
-          shipment nature, sea freight was selected as the most suitable option. The project helped me gain practical insight into
-          freight calculation and logistics decision-making.</p>
+        <h3>Business Process Improvement Analysis: Uniform Manufacturing Operations</h3>
+        <p>This project Analyzed the operational workflow of a manufacturing business using gap and root cause analysis, proposing an
+          inventory buffer system and inline quality checkpoints to reduce product defects from 8–10% down to 2–3%.</p>
       </div>
       <div class="project-card">
-        <h3>International Trade & Export Operations Simulation</h3>
-        <p>In this project, I Prepared end-to-end export documents and logistics plan for a garment shipment from
-          India to UAE, including costing, invoicing, freight calculation, and shipping decisions. Gained hands-on experience
-          in international trade and export operations.</p>
+        <h3>Sales & Operations KPI Dashboard</h3>
+        <p>In this project, I Developed a dynamic Excel performance dashboard by aggregating multi-product monthly sales data into
+          automated pivot tables, translating raw metrics into visual charts for enhanced data-driven decision-making.</p>
       </div>
-        <div class="projects-view-all-wrapper">
-    <a href="projects.html" class="btn-view-all">View All Projects</a>
-  </div>
-    </a>
+      <div class="projects-view-all-wrapper">
+        <a href="projects.html" class="btn-view-all">View All Projects</a>
+      </div>
     </section>
 
-        <!-- Tools Known -->
     <section id="tools" class="section reveal tools-section">
       <h2>Tools Known</h2>
       <div class="tools-grid">
@@ -160,7 +163,8 @@
         <div class="tool-card">
           <img src="files/icons/premiere.png" alt="Adobe Premiere Pro" class="tool-icon" draggable="false" />
           <span>Premiere Pro</span>
-        </div><div class="tool-card">
+        </div>
+        <div class="tool-card">
           <img src="files/icons/davinci.png" alt="Davinci Resolve" class="tool-icon" draggable="false" />
           <span>Davinci Resolve</span>
         </div>
@@ -171,7 +175,6 @@
       </div>
     </section>
 
-    <!-- Work Experience -->
     <section id="work" class="section work reveal">
       <h2>Work Experience</h2>
       <div class="work-card edu-entry" data-url="https://skct.edu.in/">
@@ -197,12 +200,10 @@
       </div>
     </section>
 
-    <!-- Education -->
     <h2 id="education-title">My Education Journey</h2>
     <section id="education" class="section education reveal">
       <div class="education-pathway">
         <div class="path-line" aria-hidden="true"></div>
-        <div class="student-icon" aria-hidden="true">🎓</div>
         <div class="education-nodes" aria-label="Education timeline" role="list">
           <div class="education-node" data-index="0" data-url="https://www.avila.edu/" role="listitem" tabindex="0">
             <div class="edu-box">
@@ -243,18 +244,16 @@
       </div>
     </section>
 
-    <!-- Resume -->
-    <section id="resume" class="section resume reveal">
-      <h2>My Resume</h2>
-      <div class="resume-actions">
-        <a href="https://drive.google.com/uc?export=download&id=1M-RtPGHOhZl64aivGETrQGr6nxWupGeh" download="Gokul_K_R_Resume.pdf" class="btn-resume" id="downloadBtn">Download Resume (PDF)</a>
-      </div>
-      <div class="pdf-frame">
-        <iframe src="https://drive.google.com/file/d/1M-RtPGHOhZl64aivGETrQGr6nxWupGeh/preview" frameborder="0" width="100%" height="575px" id="pdfViewer" loading="lazy"></iframe>
-      </div>
-    </section>
+    <section id="resume" class="section resume reveal">
+      <h2>My Resume</h2>
+      <div class="resume-actions">
+        <a href="https://drive.google.com/uc?export=download&id=1M-RtPGHOhZl64aivGETrQGr6nxWupGeh" download="Gokul_K_R_Resume.pdf" class="btn-resume" id="downloadBtn">Download Resume (PDF)</a>
+      </div>
+      <div class="pdf-frame">
+        <iframe src="https://drive.google.com/file/d/1M-RtPGHOhZl64aivGETrQGr6nxWupGeh/preview" frameborder="0" width="100%" height="575px" id="pdfViewer" loading="lazy"></iframe>
+      </div>
+    </section>
 
-    <!-- Contact and connect -->
     <section id="contact-connect" class="section reveal" aria-label="Contact and Social Connect">
       <h2 class="section-title center-text">Connect me on</h2>
       <div class="contact-connect">
@@ -278,7 +277,6 @@
 
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-bottom">
       <p>
@@ -289,8 +287,4 @@
 
   <script src="script.js"></script>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> d4d066728d8feb94ca982d58733726bb832bab2d
